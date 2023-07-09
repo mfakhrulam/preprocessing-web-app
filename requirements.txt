@@ -1,4 +1,6 @@
 flask
 python-dotenv
 nltk
-Sastrawi
+PySastrawi
+git+https://github.com/ariaghora/mpstemmer.git
+python-levenshtein
