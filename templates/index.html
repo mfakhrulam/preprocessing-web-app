@@ -37,7 +37,8 @@
         <div class="space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4"> 
           
           <form>
-            <!-- <div class="w-full mb-4 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
+            <!-- 
+            <div class="w-full mb-4 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
                 
                 <div class="px-4 py-2 bg-white rounded-b-lg dark:bg-gray-800">
                     <label for="editor" class="sr-only">Publish post</label>
@@ -75,26 +76,26 @@
                 <ul class="items-center w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex dark:bg-gray-700 dark:border-gray-600 dark:text-white">
                     <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
                         <div class="flex items-center pl-3">
-                            <input id="horizontal-list-radio-license" type="radio" value="" name="list-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" required checked>
-                            <label for="horizontal-list-radio-license" class="w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Driver License </label>
+                            <input id="porter_stemmer" type="radio" value="porter" name="stemmer_lemmatizer" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" required checked>
+                            <label for="porter_stemmer" class="w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Porter Stemmer (Inggris)</label>
                         </div>
                     </li>
                     <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
                         <div class="flex items-center pl-3">
-                            <input id="horizontal-list-radio-id" type="radio" value="" name="list-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                            <label for="horizontal-list-radio-id" class="w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">State ID</label>
+                            <input id="wordnet_lemmatizer" type="radio" value="wordnet" name="stemmer_lemmatizer" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                            <label for="wordnet_lemmatizer" class="w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Wordnet Lemmatizer (Inggris)</label>
                         </div>
                     </li>
                     <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
                         <div class="flex items-center pl-3">
-                            <input id="horizontal-list-radio-millitary" type="radio" value="" name="list-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                            <label for="horizontal-list-radio-millitary" class="w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">US Millitary</label>
+                            <input id="mp_stemmer" type="radio" value="mp" name="stemmer_lemmatizer" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                            <label for="mp_stemmer" class="w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Multi-Phase Stemmer (Indonesia)</label>
                         </div>
                     </li>
                     <li class="w-full dark:border-gray-600">
                         <div class="flex items-center pl-3">
-                            <input id="horizontal-list-radio-passport" type="radio" value="" name="list-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                            <label for="horizontal-list-radio-passport" class="w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">US Passport</label>
+                            <input id="sastrawi_stemmer" type="radio" value="sastrawi" name="stemmer_lemmatizer" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                            <label for="sastrawi_stemmer" class="w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Sastrawi Stemmer (Indonesia)</label>
                         </div>
                     </li>
                 </ul>
@@ -206,7 +207,7 @@
                   </svg>
                 </button>
               </h2>
-              <div id="normali#normalization_body" class="hidden" aria-labelledby="normalization_heading">
+              <div id="normalization_body" class="hidden" aria-labelledby="normalization_heading">
                 <div class="p-5 border border-t-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
                   <p class="mb-2 text-gray-500 dark:text-gray-400">Teks sebelum normalisasi:</p>
                   <p class="mb-2 text-gray-500 dark:text-gray-400">Flowbite is an open-source library of interactive components built on top of Tailwind CSS including buttons, dropdowns, modals, navbars, and more.</p>
