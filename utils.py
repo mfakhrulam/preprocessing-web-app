@@ -1,11 +1,14 @@
 import nltk
-from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 from Sastrawi.StopWordRemover.StopWordRemoverFactory import StopWordRemoverFactory
 from nltk.stem.porter import PorterStemmer
 from nltk.stem import WordNetLemmatizer
+
 from mpstemmer import MPStemmer
+# https://github.com/ariaghora/mpstemmer
+
 from Sastrawi.Stemmer.StemmerFactory import StemmerFactory
+# https://github.com/har07/PySastrawi/tree/master
 
 def get_stopwords_removal(input_words, language_input='indonesia'):
     language = language_input
