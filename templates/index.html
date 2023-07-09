@@ -36,7 +36,7 @@
         
         <div class="space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4"> 
           
-          <form>
+          <form method="post">
             <!-- 
             <div class="w-full mb-4 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
                 
@@ -49,7 +49,7 @@
                 
             </div> -->
             <div class="w-full mb-4">
-              <textarea id="message" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Tulis teks yang akan di-preprocessing..."></textarea>
+              <textarea id="message" rows="4" name="sentence" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Tulis teks yang akan di-preprocessing...">{{ sentence }}</textarea>
             </div>
 
             
@@ -59,13 +59,13 @@
                 <ul class="items-center w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex dark:bg-gray-700 dark:border-gray-600 dark:text-white">
                   <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
                     <div class="flex items-center pl-3">
-                      <input id="english_lang" type="radio" value="english" name="language" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" required checked>
+                      <input id="english_lang" type="radio" value="english" name="language" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" required {{ 'checked' if lang=='english' else '' }}>
                       <label for="english_lang" class="w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Inggris</label>
                     </div>
                   </li>  
                   <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
                     <div class="flex items-center pl-3">
-                        <input id="indonesian_lang" type="radio" value="indonesia" name="language" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                        <input id="indonesian_lang" type="radio" value="indonesia" name="language" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" {{ 'checked' if lang=='indonesia' else '' }}>
                         <label for="indonesian_lang" class="w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Indonesia </label>
                     </div>
                   </li>
@@ -76,25 +76,25 @@
                 <ul class="items-center w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex dark:bg-gray-700 dark:border-gray-600 dark:text-white">
                     <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
                         <div class="flex items-center pl-3">
-                            <input id="porter_stemmer" type="radio" value="porter" name="stemmer_lemmatizer" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" required checked>
+                            <input id="porter_stemmer" type="radio" value="porter" name="stemmer_lemmatizer" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" required {{ 'checked' if stem_lemm_type=='porter' else '' }}>
                             <label for="porter_stemmer" class="w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Porter Stemmer (Inggris)</label>
                         </div>
                     </li>
                     <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
                         <div class="flex items-center pl-3">
-                            <input id="wordnet_lemmatizer" type="radio" value="wordnet" name="stemmer_lemmatizer" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                            <input id="wordnet_lemmatizer" type="radio" value="wordnet" name="stemmer_lemmatizer" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" {{ 'checked' if stem_lemm_type=='wordnet' else '' }}>
                             <label for="wordnet_lemmatizer" class="w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Wordnet Lemmatizer (Inggris)</label>
                         </div>
                     </li>
                     <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
                         <div class="flex items-center pl-3">
-                            <input id="mp_stemmer" type="radio" value="mp" name="stemmer_lemmatizer" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                            <input id="mp_stemmer" type="radio" value="mp" name="stemmer_lemmatizer" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" {{ 'checked' if stem_lemm_type=='mp' else '' }}>
                             <label for="mp_stemmer" class="w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Multi-Phase Stemmer (Indonesia)</label>
                         </div>
                     </li>
                     <li class="w-full dark:border-gray-600">
                         <div class="flex items-center pl-3">
-                            <input id="sastrawi_stemmer" type="radio" value="sastrawi" name="stemmer_lemmatizer" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                            <input id="sastrawi_stemmer" type="radio" value="sastrawi" name="stemmer_lemmatizer" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" {{ 'checked' if stem_lemm_type=='sastrawi' else '' }}>
                             <label for="sastrawi_stemmer" class="w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Sastrawi Stemmer (Indonesia)</label>
                         </div>
                     </li>
@@ -135,9 +135,9 @@
               <div id="case_folding_body" class="hidden" aria-labelledby="case_folding_heading">
                 <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
                   <p class="mb-2 text-gray-500 dark:text-gray-400">Teks sebelum case folding:</p>
-                  <p class="mb-2 text-gray-500 dark:text-gray-400">Flowbite is an open-source library of interactive components built on top of Tailwind CSS including buttons, dropdowns, modals, navbars, and more.</p>
+                  <p class="mb-2 text-gray-500 dark:text-gray-400">{{ sentence }}</p>
                   <p class="mb-2 text-gray-500 dark:text-gray-400">Teks setelah case folding:</p>
-                  <p class="text-gray-500 dark:text-gray-400">Flowbite is an open-source library of interactive components built on top of Tailwind CSS including buttons, dropdowns, modals, navbars, and more.</p>
+                  <p class="text-gray-500 dark:text-gray-400">{{ case_folding }}</p>
                 </div>
               </div>
               
@@ -153,9 +153,9 @@
               <div id="tokenization_body" class="hidden" aria-labelledby="tokenization_heading">
                 <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
                   <p class="mb-2 text-gray-500 dark:text-gray-400">Teks sebelum tokenisasi:</p>
-                  <p class="mb-2 text-gray-500 dark:text-gray-400">Flowbite is an open-source library of interactive components built on top of Tailwind CSS including buttons, dropdowns, modals, navbars, and more.</p>
+                  <p class="mb-2 text-gray-500 dark:text-gray-400">{{ case_folding }}</p>
                   <p class="mb-2 text-gray-500 dark:text-gray-400">Teks setelah tokenisasi:</p>
-                  <p class="text-gray-500 dark:text-gray-400">Flowbite is an open-source library of interactive components built on top of Tailwind CSS including buttons, dropdowns, modals, navbars, and more.</p>
+                  <p class="text-gray-500 dark:text-gray-400">{{ tokenize_word }}</p>
                 </div>
               </div>
 
@@ -171,9 +171,9 @@
               <div id="filtering_body" class="hidden" aria-labelledby="filtering_heading">
                 <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
                   <p class="mb-2 text-gray-500 dark:text-gray-400">Teks sebelum filtering (stopword removal):</p>
-                  <p class="mb-2 text-gray-500 dark:text-gray-400">Flowbite is an open-source library of interactive components built on top of Tailwind CSS including buttons, dropdowns, modals, navbars, and more.</p>
+                  <p class="mb-2 text-gray-500 dark:text-gray-400">{{ tokenize_word }}</p>
                   <p class="mb-2 text-gray-500 dark:text-gray-400">Teks setelah filtering (stopword removal):</p>
-                  <p class="text-gray-500 dark:text-gray-400">Flowbite is an open-source library of interactive components built on top of Tailwind CSS including buttons, dropdowns, modals, navbars, and more.</p>
+                  <p class="text-gray-500 dark:text-gray-400">{{ stopword_removal_word }}</p>
                 </div>
               </div>
           
@@ -210,9 +210,9 @@
               <div id="normalization_body" class="hidden" aria-labelledby="normalization_heading">
                 <div class="p-5 border border-t-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
                   <p class="mb-2 text-gray-500 dark:text-gray-400">Teks sebelum normalisasi:</p>
-                  <p class="mb-2 text-gray-500 dark:text-gray-400">Flowbite is an open-source library of interactive components built on top of Tailwind CSS including buttons, dropdowns, modals, navbars, and more.</p>
+                  <p class="mb-2 text-gray-500 dark:text-gray-400">{{ stopword_removal_word }}</p>
                   <p class="mb-2 text-gray-500 dark:text-gray-400">Teks setelah normalisasi:</p>
-                  <p class="text-gray-500 dark:text-gray-400">Flowbite is an open-source library of interactive components built on top of Tailwind CSS including buttons, dropdowns, modals, navbars, and more.</p>
+                  <p class="text-gray-500 dark:text-gray-400">{{ stem_lemm_word }}</p>
                 </div>
               </div>
             </div>
