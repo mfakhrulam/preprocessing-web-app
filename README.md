@@ -39,6 +39,12 @@ pip install -r requirements.txt
 
 ```
 
+5. Download nltk puntk, wordnet, and stopwords
+```
+python nltk_download.py
+
+```
+
 6. Make .flaskenv file and specify the appropriate file to run:
 ```
 FLASK_APP=app
