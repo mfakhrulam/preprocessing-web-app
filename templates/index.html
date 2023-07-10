@@ -17,7 +17,7 @@
   <link rel="stylesheet" href="{{url_for('static',filename='dist/css/output.css')}}">
 </head>
 
-<body >
+<body class="bg-white dark:bg-gray-900">
   
   <main>
 
@@ -112,114 +112,141 @@
       </div>
       
     </section>
-  
-  <section class="bg-white dark:bg-gray-900">
+
     
-    <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16">
+
+    {% if sentence == "": %}
+    
+
+    {% else: %}
+    <section class="bg-white dark:bg-gray-900">
+    
+      <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16">
       
         <div class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-8 md:p-12 mb-8">
           
-            <h1 class="text-gray-900 dark:text-white text-2xl md:text-4xl font-extrabold mb-2">Hasil Pre-processing</h1>
-            
-            
-            <div id="accordion-open" data-accordion="open" class="mt-8">
-              <!-- CASE FOLDING -->
-              <h2 id="case_folding_heading">
-                <button type="button" class="flex items-center justify-between w-full p-5 font-medium text-left text-gray-500 border border-b-0 border-gray-200 rounded-t-xl focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800" data-accordion-target="#case_folding_body" aria-expanded="true" aria-controls="case_folding_body">
-                  <span>Case folding</span>
-                  <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
-                  </svg>
-                </button>
-              </h2>
-              <div id="case_folding_body" class="hidden" aria-labelledby="case_folding_heading">
-                <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
-                  <p class="mb-2 text-gray-500 dark:text-gray-400">Teks sebelum case folding:</p>
-                  <p class="mb-2 text-gray-500 dark:text-gray-400">{{ sentence }}</p>
-                  <p class="mb-2 text-gray-500 dark:text-gray-400">Teks setelah case folding:</p>
-                  <p class="text-gray-500 dark:text-gray-400">{{ case_folding }}</p>
-                </div>
-              </div>
-              
-              <!-- TOKENIZATION -->
-              <h2 id="tokenization_heading">
-                <button type="button" class="flex items-center justify-between w-full p-5 font-medium text-left text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800" data-accordion-target="#tokenization_body" aria-expanded="false" aria-controls="tokenization_body">
-                  <span class="flex items-center">Tokenisasi</span>
-                  <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
-                  </svg>
-                </button>
-              </h2>
-              <div id="tokenization_body" class="hidden" aria-labelledby="tokenization_heading">
-                <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
-                  <p class="mb-2 text-gray-500 dark:text-gray-400">Teks sebelum tokenisasi:</p>
-                  <p class="mb-2 text-gray-500 dark:text-gray-400">{{ case_folding }}</p>
-                  <p class="mb-2 text-gray-500 dark:text-gray-400">Teks setelah tokenisasi:</p>
-                  <p class="text-gray-500 dark:text-gray-400">{{ tokenize_word }}</p>
-                </div>
-              </div>
-
-              <!-- FILTERING -->
-              <h2 id="filtering_heading">
-                <button type="button" class="flex items-center justify-between w-full p-5 font-medium text-left text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800" data-accordion-target="#filtering_body" aria-expanded="false" aria-controls="filtering_body">
-                  <span class="flex items-center">Filtering (Stopword Removal)</span>
-                  <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
-                  </svg>
-                </button>
-              </h2>
-              <div id="filtering_body" class="hidden" aria-labelledby="filtering_heading">
-                <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
-                  <p class="mb-2 text-gray-500 dark:text-gray-400">Teks sebelum filtering (stopword removal):</p>
-                  <p class="mb-2 text-gray-500 dark:text-gray-400">{{ tokenize_word }}</p>
-                  <p class="mb-2 text-gray-500 dark:text-gray-400">Teks setelah filtering (stopword removal):</p>
-                  <p class="text-gray-500 dark:text-gray-400">{{ stopword_removal_word }}</p>
-                </div>
-              </div>
+          <h1 class="text-gray-900 dark:text-white text-2xl md:text-4xl font-extrabold mb-2">Hasil Pre-processing</h1>
           
-            <!--   
-
-              <h2 id="normalization_heading">
-                <button type="button" class="flex items-center justify-between w-full p-5 font-medium text-left text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800" data-accordion-target="#normalization_body" aria-expanded="false" aria-controls="normalization_body">
-                  <span class="flex items-center">Normalisasi</span>
-                  <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
-                  </svg>
-                </button>
-              </h2>
-              <div id="normalization_body" class="hidden" aria-labelledby="normalization_heading">
-                <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
-                  <p class="mb-2 text-gray-500 dark:text-gray-400">Teks sebelum normalisasi:</p>
-                  <p class="mb-2 text-gray-500 dark:text-gray-400">Flowbite is an open-source library of interactive components built on top of Tailwind CSS including buttons, dropdowns, modals, navbars, and more.</p>
-                  <p class="mb-2 text-gray-500 dark:text-gray-400">Teks setelah normalisasi:</p>
-                  <p class="text-gray-500 dark:text-gray-400">Flowbite is an open-source library of interactive components built on top of Tailwind CSS including buttons, dropdowns, modals, navbars, and more.</p>
-                </div>
-              </div> 
-              
-            -->
-
-              <!-- NORMALIZATION -->
-              <h2 id="normalization_heading">
-                <button type="button" class="flex items-center justify-between w-full p-5 font-medium text-left text-gray-500 border border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800" data-accordion-target="#normalization_body" aria-expanded="false" aria-controls="normali#normalization_body">
-                  <span class="flex items-center">Normalisasi (Stemming & Lemmatization)</span>
-                  <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
-                  </svg>
-                </button>
-              </h2>
-              <div id="normalization_body" class="hidden" aria-labelledby="normalization_heading">
-                <div class="p-5 border border-t-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
-                  <p class="mb-2 text-gray-500 dark:text-gray-400">Teks sebelum normalisasi:</p>
-                  <p class="mb-2 text-gray-500 dark:text-gray-400">{{ stopword_removal_word }}</p>
-                  <p class="mb-2 text-gray-500 dark:text-gray-400">Teks setelah normalisasi:</p>
-                  <p class="text-gray-500 dark:text-gray-400">{{ stem_lemm_word }}</p>
-                </div>
+          <div id="accordion-open" data-accordion="open" class="mt-8">
+            <!-- CASE FOLDING -->
+            <h2 id="case_folding_heading">
+              <button type="button" class="flex items-center justify-between w-full p-5 font-medium text-left text-gray-500 border border-b-0 border-gray-200 rounded-t-xl focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800" data-accordion-target="#case_folding_body" aria-expanded="true" aria-controls="case_folding_body">
+                <span>Case folding</span>
+                <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+                </svg>
+              </button>
+            </h2>
+            <div id="case_folding_body" class="hidden" aria-labelledby="case_folding_heading">
+              <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+                <p class="mb-2 text-gray-500 dark:text-gray-400">Teks sebelum case folding:</p>
+                <p class="mb-2 text-gray-500 dark:text-gray-400"><span class="bg-blue-100 text-blue-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">{{sentence}}</span>
+                  </p>
+                <p class="mb-2 text-gray-500 dark:text-gray-400">Teks setelah case folding:</p>
+                <p class="text-gray-500 dark:text-gray-400"><span class="bg-green-100 text-green-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">{{ case_folding }}</span>
+                  </p>
               </div>
             </div>
-        </div>
+            
+            <!-- TOKENIZATION -->
+            <h2 id="tokenization_heading">
+              <button type="button" class="flex items-center justify-between w-full p-5 font-medium text-left text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800" data-accordion-target="#tokenization_body" aria-expanded="false" aria-controls="tokenization_body">
+                <span class="flex items-center">Tokenisasi</span>
+                <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+                </svg>
+              </button>
+            </h2>
+            <div id="tokenization_body" class="hidden" aria-labelledby="tokenization_heading">
+              <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+                <p class="mb-2 text-gray-500 dark:text-gray-400">Teks sebelum tokenisasi:</p>
+                <p class="mb-2 text-gray-500 dark:text-gray-400"><span class="bg-blue-100 text-blue-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">{{ case_folding }}</span></p>
+                <p class="mb-2 text-gray-500 dark:text-gray-400">Teks setelah tokenisasi:</p>
+                <p class="text-gray-500 dark:text-gray-400">
+                  {% for word in tokenize_word %}
+                    <span class="bg-green-100 text-green-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300"> {{ word }}</span>
+                  {% endfor %}</p>
+              </div>
+            </div>
+
+            <!-- FILTERING -->
+            <h2 id="filtering_heading">
+              <button type="button" class="flex items-center justify-between w-full p-5 font-medium text-left text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800" data-accordion-target="#filtering_body" aria-expanded="false" aria-controls="filtering_body">
+                <span class="flex items-center">Filtering (Stopword Removal)</span>
+                <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+                </svg>
+              </button>
+            </h2>
+            <div id="filtering_body" class="hidden" aria-labelledby="filtering_heading">
+              <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+                <p class="mb-2 text-gray-500 dark:text-gray-400">Teks sebelum filtering (stopword removal):</p>
+                <p class="mb-2 text-gray-500 dark:text-gray-400">
+                  {% for word in tokenize_word %}
+                    <span class="bg-blue-100 text-blue-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300"> {{ word }}</span>
+                  {% endfor %}
+              </p>
+                <p class="mb-2 text-gray-500 dark:text-gray-400">Teks setelah filtering (stopword removal):</p>
+                <p class="text-gray-500 dark:text-gray-400">
+                  {% for word in stopword_removal_word %}
+                    <span class="bg-green-100 text-green-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">{{word}}</span>
+                  {% endfor %}
+                </p>
+              </div>
+            </div>
         
-    </div>
-  </section>
+          <!--   
+
+            <h2 id="normalization_heading">
+              <button type="button" class="flex items-center justify-between w-full p-5 font-medium text-left text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800" data-accordion-target="#normalization_body" aria-expanded="false" aria-controls="normalization_body">
+                <span class="flex items-center">Normalisasi</span>
+                <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+                </svg>
+              </button>
+            </h2>
+            <div id="normalization_body" class="hidden" aria-labelledby="normalization_heading">
+              <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+                <p class="mb-2 text-gray-500 dark:text-gray-400">Teks sebelum normalisasi:</p>
+                <p class="mb-2 text-gray-500 dark:text-gray-400">Flowbite is an open-source library of interactive components built on top of Tailwind CSS including buttons, dropdowns, modals, navbars, and more.</p>
+                <p class="mb-2 text-gray-500 dark:text-gray-400">Teks setelah normalisasi:</p>
+                <p class="text-gray-500 dark:text-gray-400">Flowbite is an open-source library of interactive components built on top of Tailwind CSS including buttons, dropdowns, modals, navbars, and more.</p>
+              </div>
+            </div> 
+            
+          -->
+
+            <!-- NORMALIZATION -->
+            <h2 id="normalization_heading">
+              <button type="button" class="flex items-center justify-between w-full p-5 font-medium text-left text-gray-500 border border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800" data-accordion-target="#normalization_body" aria-expanded="false" aria-controls="normali#normalization_body">
+                <span class="flex items-center">Normalisasi (Stemming & Lemmatization)</span>
+                <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+                </svg>
+              </button>
+            </h2>
+            <div id="normalization_body" class="hidden" aria-labelledby="normalization_heading">
+              <div class="p-5 border border-t-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+                <p class="mb-2 text-gray-500 dark:text-gray-400">Teks sebelum normalisasi:</p>
+                <p class="mb-2 text-gray-500 dark:text-gray-400">
+                  {% for word in stopword_removal_word %}
+                    <span class="bbg-blue-100 text-blue-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">{{word}}</span>
+                  {% endfor %}
+                </p>
+                <p class="mb-2 text-gray-500 dark:text-gray-400">Teks setelah normalisasi:</p>
+                <p class="text-gray-500 dark:text-gray-400">
+                  {% for word in stem_lemm_word %}
+                    <span class="bg-green-100 text-green-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">{{word}}</span>
+                  {% endfor %}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    {% endif %}
+
 
   </main>
   
