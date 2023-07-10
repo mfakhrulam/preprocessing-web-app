@@ -12,31 +12,7 @@ from Sastrawi.Stemmer.StemmerFactory import StemmerFactory
 
 def get_stopwords_removal(input_words, language_input='indonesia'):
     language = language_input
-    language_list_nltk = ['arabic',
-    'azerbaijani',
-    'danish',
-    'dutch',
-    'english',
-    'finnish',
-    'french',
-    'german',
-    'greek',
-    'hungarian',
-    'indonesian',
-    'italian',
-    'kazakh',
-    'nepali',
-    'norwegian',
-    'portuguese',
-    'romanian',
-    'russian',
-    'slovene',
-    'spanish',
-    'swedish',
-    'tajik',
-    'turkish']
-
-
+    language_list_nltk = ['arabic','azerbaijani','danish','dutch','english','finnish','french','german','greek','hungarian','indonesian','italian','kazakh','nepali','norwegian','portuguese','romanian','russian','slovene','spanish','swedish','tajik','turkish']
     if language == 'indonesia':
       sw = StopWordRemoverFactory().get_stop_words()
     elif language in language_list_nltk:
