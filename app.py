@@ -13,7 +13,12 @@ def index():
   
   else:
     lang = request.form['language']
-    stem_lemm_type = request.form['stemmer_lemmatizer']
+    stem_lemm_type=''
+    if lang == "english":
+      stem_lemm_type = request.form['stemmer_lemmatizer_en']
+    if lang == "indonesia":
+      stem_lemm_type = request.form['stemmer_lemmatizer_id']
+        
     sentence = request.form['sentence']
     case_folding = sentence.lower()
     tokenize_word = [w for w in word_tokenize(case_folding) if w.isalnum()]
