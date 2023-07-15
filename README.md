@@ -4,6 +4,10 @@
 
 This project is a web application that visualize on how the text proprocessing work.
 
+## Screenshots
+
+![image](https://raw.githubusercontent.com/mfakhrulam/preprocessing-web-app/main/assets/ss.png)
+
 ## How to Use Locally
 
 
