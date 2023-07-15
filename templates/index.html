@@ -13,6 +13,63 @@
     } else {
         document.documentElement.classList.remove('dark')
     }
+
+    function change_stem() {  
+      var target = document.getElementById('stem_choices');
+      
+      //get the value if checkbox is checked  
+      var lang_id = document.getElementById("indonesian_lang").checked;  
+      var lang_en = document.getElementById("english_lang").checked;
+
+      if (lang_id == true) {  
+        let str = `<li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-600">
+                        <div class="flex items-center pl-3">
+                            <input id="mp_stemmer" type="radio" value="mp" name="stemmer_lemmatizer_id" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" {{ 'checked' if stem_lemm_type=='mp' else '' }}>
+                            <label for="mp_stemmer" class="w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Multi-Phase Stemmer</label>
+                        </div>
+                    </li>
+                    
+                    <li class="w-full dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-600">
+                        <div class="flex items-center pl-3">
+                            <input id="sastrawi_stemmer" type="radio" value="sastrawi" name="stemmer_lemmatizer_id" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" {{ 'checked' if stem_lemm_type=='sastrawi' else '' }}>
+                            <label for="sastrawi_stemmer" class="w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Sastrawi Stemmer</label>
+                        </div>
+                    </li>`
+        target.innerHTML = str 
+      } else if (lang_en == true) {
+        let str = `<li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-600">
+                        <div class="flex items-center pl-3">
+                            <input id="porter_stemmer" type="radio" value="porter" name="stemmer_lemmatizer_en" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" required {{ 'checked' if stem_lemm_type=='porter' else '' }}>
+                            <label for="porter_stemmer" class="w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Porter Stemmer</label>
+                        </div>
+                    </li>
+                    <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-600">
+                        <div class="flex items-center pl-3">
+                            <input id="lancaster_stemmer" type="radio" value="lancaster" name="stemmer_lemmatizer_en" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" required {{ 'checked' if stem_lemm_type=='lancaster' else '' }}>
+                            <label for="lancaster_stemmer" class="w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Lancaster Stemmer</label>
+                        </div>
+                    </li>
+                    <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-600">
+                        <div class="flex items-center pl-3">
+                            <input id="snowball_stemmer" type="radio" value="snowball" name="stemmer_lemmatizer_en" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" required {{ 'checked' if stem_lemm_type=='snowball' else '' }}>
+                            <label for="snowball_stemmer" class="w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Snowball Stemmer</label>
+                        </div>
+                    </li>
+                    <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-600">
+                        <div class="flex items-center pl-3">
+                            <input id="wordnet_lemmatizer" type="radio" value="wordnet" name="stemmer_lemmatizer_en" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" {{ 'checked' if stem_lemm_type=='wordnet' else '' }}>
+                            <label for="wordnet_lemmatizer" class="w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Wordnet Lemmatizer</label>
+                        </div>
+                    </li>` 
+
+
+        target.innerHTML = str
+
+      }
+
+      
+    }  
+    
   </script>
   <link rel="stylesheet" href="{{url_for('static',filename='dist/css/output.css')}}">
   <link rel="shortcut icon" href="{{ url_for('static', filename='assets/favicon.ico') }}">
@@ -58,15 +115,15 @@
               <div class="text-left mb-4">
                 <h3 class="mb-4 font-semibold text-gray-900 dark:text-white">Bahasa</h3>
                 <ul class="items-center w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-                  <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+                  <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-600">
                     <div class="flex items-center pl-3">
-                      <input id="english_lang" type="radio" value="english" name="language" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" required {{ 'checked' if lang=='english' else '' }}>
+                      <input id="english_lang" type="radio" onchange="change_stem()" value="english" name="language" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" required {{ 'checked' if lang=='english' else '' }}>
                       <label for="english_lang" class="w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Inggris</label>
                     </div>
                   </li>  
-                  <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+                  <li class="w-full dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-600">
                     <div class="flex items-center pl-3">
-                        <input id="indonesian_lang" type="radio" value="indonesia" name="language" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" {{ 'checked' if lang=='indonesia' else '' }}>
+                        <input id="indonesian_lang" type="radio" onchange="change_stem()" value="indonesia" name="language" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" {{ 'checked' if lang=='indonesia' else '' }}>
                         <label for="indonesian_lang" class="w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Indonesia </label>
                     </div>
                   </li>
@@ -74,31 +131,37 @@
               </div>
               <div class="text-left mb-4">
                 <h3 class="mb-4 font-semibold text-gray-900 dark:text-white">Stemmer & Lemmatizer</h3>
-                <ul class="items-center w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-                    <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+                <ul id="stem_choices" class="items-center w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                    <!-- <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-600">
                         <div class="flex items-center pl-3">
-                            <input id="porter_stemmer" type="radio" value="porter" name="stemmer_lemmatizer" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" required {{ 'checked' if stem_lemm_type=='porter' else '' }}>
+                            <input id="porter_stemmer" type="radio" value="porter" name="stemmer_lemmatizer_en" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" required {{ 'checked' if stem_lemm_type=='porter' else '' }}>
                             <label for="porter_stemmer" class="w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Porter Stemmer (Inggris)</label>
                         </div>
                     </li>
-                    <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+                    <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-600">
                         <div class="flex items-center pl-3">
-                            <input id="wordnet_lemmatizer" type="radio" value="wordnet" name="stemmer_lemmatizer" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" {{ 'checked' if stem_lemm_type=='wordnet' else '' }}>
+                            <input id="wordnet_lemmatizer" type="radio" value="wordnet" name="stemmer_lemmatizer_en" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" {{ 'checked' if stem_lemm_type=='wordnet' else '' }}>
                             <label for="wordnet_lemmatizer" class="w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Wordnet Lemmatizer (Inggris)</label>
                         </div>
                     </li>
-                    <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+                    <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-600">
                         <div class="flex items-center pl-3">
-                            <input id="mp_stemmer" type="radio" value="mp" name="stemmer_lemmatizer" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" {{ 'checked' if stem_lemm_type=='mp' else '' }}>
+                            <input id="mp_stemmer" type="radio" value="mp" name="stemmer_lemmatizer_id" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" {{ 'checked' if stem_lemm_type=='mp' else '' }}>
                             <label for="mp_stemmer" class="w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Multi-Phase Stemmer (Indonesia)</label>
                         </div>
                     </li>
-                    <li class="w-full dark:border-gray-600">
+                    <li class="w-full dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-600">
                         <div class="flex items-center pl-3">
-                            <input id="sastrawi_stemmer" type="radio" value="sastrawi" name="stemmer_lemmatizer" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" {{ 'checked' if stem_lemm_type=='sastrawi' else '' }}>
+                            <input id="sastrawi_stemmer" type="radio" value="sastrawi" name="stemmer_lemmatizer_id" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" {{ 'checked' if stem_lemm_type=='sastrawi' else '' }}>
                             <label for="sastrawi_stemmer" class="w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Sastrawi Stemmer (Indonesia)</label>
                         </div>
-                    </li>
+                    </li> -->
+                    <li class="w-full dark:border-gray-600">
+                      <div class="flex items-center pl-3">
+                          <input id="none" type="radio" value="none" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" disabled required>
+                          <label for="none" class="w-full py-3 ml-2 text-sm font-medium text-gray-400 dark:text-gray-500">Pilih bahasa terlebih dahulu</label>
+                      </div>
+                  </li>
                 </ul>
               </div>
             </div>         
@@ -140,10 +203,11 @@
             </h2>
             <div id="case_folding_body" class="hidden" aria-labelledby="case_folding_heading">
               <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
-                <p class="mb-2 text-gray-500 dark:text-gray-400">Teks sebelum case folding:</p>
+                <p class="mb-2 text-gray-500 dark:text-gray-400">Case folding adalah proses untuk menyamakan semua bentuk huruf menjadi huruf kecil (lowercase)</p>
+                <p class="mb-2 font-semibold text-gray-700 dark:text-gray-300">Teks sebelum case folding:</p>
                 <p class="mb-2 text-gray-500 dark:text-gray-400"><span class="bg-blue-100 text-blue-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">{{sentence}}</span>
                   </p>
-                <p class="mb-2 text-gray-500 dark:text-gray-400">Teks setelah case folding:</p>
+                <p class="mb-2 font-semibold text-gray-700 dark:text-gray-300">Teks setelah case folding:</p>
                 <p class="text-gray-500 dark:text-gray-400"><span class="bg-green-100 text-green-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">{{ case_folding }}</span>
                   </p>
               </div>
@@ -160,9 +224,10 @@
             </h2>
             <div id="tokenization_body" class="hidden" aria-labelledby="tokenization_heading">
               <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
-                <p class="mb-2 text-gray-500 dark:text-gray-400">Teks sebelum tokenisasi:</p>
+                <p class="mb-2 text-gray-500 dark:text-gray-400">Tokenisasi adalah proses untuk memisah kalimat menjadi kata-kata penyusunnya. Tahap ini juga dilakukan untuk menghilangkan tanda baca seperti titik (.) dan koma (,).</p>
+                <p class="mb-2 font-semibold text-gray-700 dark:text-gray-300">Teks sebelum tokenisasi:</p>
                 <p class="mb-2 text-gray-500 dark:text-gray-400"><span class="bg-blue-100 text-blue-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">{{ case_folding }}</span></p>
-                <p class="mb-2 text-gray-500 dark:text-gray-400">Teks setelah tokenisasi:</p>
+                <p class="mb-2 font-semibold text-gray-700 dark:text-gray-300">Teks setelah tokenisasi:</p>
                 <p class="text-gray-500 dark:text-gray-400">
                   {% for word in tokenize_word %}
                     <span class="bg-green-100 text-green-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300"> {{ word }}</span>
@@ -181,14 +246,15 @@
             </h2>
             <div id="filtering_body" class="hidden" aria-labelledby="filtering_heading">
               <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
-                <p class="mb-2 text-gray-500 dark:text-gray-400">Teks sebelum filtering (stopword removal):</p>
+                <p class="mb-2 text-gray-500 dark:text-gray-400">Filtering (stopword removal) adalah proses untuk menghilangkan kata-kata umum yang kurang bermakna, seperti kata 'di', 'ke', 'yang', dan 'dari'. Proses filtering di sini menyesuaikan dengan input bahasa yang telah disediakan.</p>
+                <p class="mb-2 font-semibold text-gray-700 dark:text-gray-300">Teks sebelum filtering (stopword removal):</p>
                 <p class="mb-2 text-gray-500 dark:text-gray-400">
                   {% for word in tokenize_word %}
                     <span class="bg-blue-100 text-blue-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300"> {{ word }}</span>
                   {% endfor %}
               </p>
-                <p class="mb-2 text-gray-500 dark:text-gray-400">Teks setelah filtering (stopword removal):</p>
-                <p class="text-gray-500 dark:text-gray-400">
+                <p class="mb-2 font-semibold text-gray-700 dark:text-gray-300">Teks setelah filtering (stopword removal):</p>
+                <p class="mb-2 text-gray-500 dark:text-gray-400">
                   {% for word in stopword_removal_word %}
                     <span class="bg-green-100 text-green-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">{{word}}</span>
                   {% endfor %}
@@ -220,7 +286,7 @@
             <!-- NORMALIZATION -->
             <h2 id="normalization_heading">
               <button type="button" class="flex items-center justify-between w-full p-5 font-medium text-left text-gray-500 border border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800" data-accordion-target="#normalization_body" aria-expanded="false" aria-controls="normali#normalization_body">
-                <span class="flex items-center">Normalisasi (Stemming & Lemmatization)</span>
+                <span class="flex items-center">Stemming & Lemmatization</span>
                 <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                   <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
                 </svg>
@@ -228,15 +294,16 @@
             </h2>
             <div id="normalization_body" class="hidden" aria-labelledby="normalization_heading">
               <div class="p-5 border border-t-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
-                <p class="mb-2 text-gray-500 dark:text-gray-400">Teks sebelum normalisasi:</p>
+                <p class="mb-2 text-gray-500 dark:text-gray-400">Stemming & Lemmatization dilakukan untuk mengubah kata menjadi bentuk kata dasarnya. {{stem_lemm_word['desc']}} </p>
+                <p class="mb-2 font-semibold text-gray-700 dark:text-gray-300">Teks sebelum Stemming & Lemmatization:</p>
                 <p class="mb-2 text-gray-500 dark:text-gray-400">
                   {% for word in stopword_removal_word %}
-                    <span class="bbg-blue-100 text-blue-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">{{word}}</span>
+                  <span class="bg-blue-100 text-blue-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300"> {{ word }}</span>
                   {% endfor %}
                 </p>
-                <p class="mb-2 text-gray-500 dark:text-gray-400">Teks setelah normalisasi:</p>
+                <p class="mb-2 font-semibold text-gray-700 dark:text-gray-300">Teks setelah Stemming & Lemmatization:</p>
                 <p class="text-gray-500 dark:text-gray-400">
-                  {% for word in stem_lemm_word %}
+                  {% for word in stem_lemm_word['output_words'] %}
                     <span class="bg-green-100 text-green-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">{{word}}</span>
                   {% endfor %}
                 </p>
@@ -293,6 +360,8 @@
         }
         
     });
+    document.addEventListener( "DOMContentLoaded", change_stem());
+
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.7.0/flowbite.min.js"></script>
 </body>
