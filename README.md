@@ -14,7 +14,7 @@ This project is a web application that visualize on how the text proprocessing w
 1. First, clone this repository with:
 
 ```
-git clone https://github.com/mfakhrulam/preprocessing.git
+git clone https://github.com/mfakhrulam/preprocessing-web-app.git
 
 ```
 
