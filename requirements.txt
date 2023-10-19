@@ -4,3 +4,4 @@ nltk
 PySastrawi
 git+https://github.com/ariaghora/mpstemmer.git
 python-levenshtein
+gunicorn
