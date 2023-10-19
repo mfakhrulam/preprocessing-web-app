@@ -18,12 +18,22 @@ def index():
       stem_lemm_type = request.form['stemmer_lemmatizer_en']
     if lang == "indonesia":
       stem_lemm_type = request.form['stemmer_lemmatizer_id']
-        
-    sentence = request.form['sentence']
-    case_folding = sentence.lower()
-    tokenize_word = [w for w in word_tokenize(case_folding) if w.isalnum()]
-    stopword_removal_word = get_stopwords_removal(tokenize_word, lang)
-    stem_lemm_word = get_lemmatized_stemmed_word(stopword_removal_word, stem_lemm_type)
+    
+    try:
+      sentence = request.form['sentence']
+      case_folding = sentence.lower()
+      tokenize_word = [w for w in word_tokenize(case_folding) if w.isalnum()]
+      stopword_removal_word = get_stopwords_removal(tokenize_word, lang)
+      stem_lemm_word = get_lemmatized_stemmed_word(stopword_removal_word, stem_lemm_type)
+    except:
+      nltk.download('punkt')
+      nltk.download('stopwords')
+      nltk.download('wordnet')
+      sentence = request.form['sentence']
+      case_folding = sentence.lower()
+      tokenize_word = [w for w in word_tokenize(case_folding) if w.isalnum()]
+      stopword_removal_word = get_stopwords_removal(tokenize_word, lang)
+      stem_lemm_word = get_lemmatized_stemmed_word(stopword_removal_word, stem_lemm_type)
     
   return render_template("index.html", 
                          sentence=sentence, 
@@ -36,7 +46,4 @@ def index():
   
 
 if __name__ == "__main__":
-  nltk.download('punkt')
-  nltk.download('stopwords')
-  nltk.download('wordnet')
   app.run(debug = True)
